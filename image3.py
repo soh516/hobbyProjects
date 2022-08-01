@@ -3,8 +3,10 @@ import cv2
 import numpy as np
   
 # reading image 
-imgL = cv2.imread("/home/hus/Pictures/Vincent_image.jpg")
-img = cv2.resize(imgL, None, fx = 0.75, fy = 0.75)
+name = "Song_image3"
+scale = 0.25
+imgL = cv2.imread("/home/hus/Pictures/" + name + ".jpg")
+img = cv2.resize(imgL, None, fx = scale, fy = scale)
 
 # Apply some Gaussian blur on the image
 img_gb = cv2.GaussianBlur(img, (7, 7) ,0)
@@ -67,7 +69,8 @@ cartoon_Bilateral = cv2.bitwise_and(inverted_Bilateral, img_bins)# Save the imag
 cv2.imshow("Original", img)
 cv2.imshow("Edges", inverted_Bilateral)
 cv2.imshow("Cartoon", cartoon_Bilateral)
-cv2.imwrite('/home/hus/Pictures/Song_Cartoon.jpg', cartoon_Bilateral)
+cv2.imwrite("/home/hus/Pictures/" + name + "_edge.jpg", inverted_Bilateral)
+cv2.imwrite("/home/hus/Pictures/" + name + "_cartoon.jpg", cartoon_Bilateral)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
    

@@ -4,8 +4,10 @@ import cv2
 import numpy as np
   
 # reading image 
-imgL = cv2.imread("/home/hus/Pictures/Vincent_image.jpg")
-img = cv2.resize(imgL, None, fx = 0.75, fy = 0.75)
+name = "Song_image3"
+scale = 0.25
+imgL = cv2.imread("/home/hus/Pictures/" + name + ".jpg")
+img = cv2.resize(imgL, None, fx = scale, fy = scale)
 
 # Edges
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -22,6 +24,7 @@ cv2.imshow("Image", img)
 cv2.imshow("Edges", edges)
 cv2.imshow("Gray", gray)
 cv2.imshow("Cartoon", cartoon)
-cv2.imwrite("/home/hus/Pictures/Vincent_Cartoon.jpg", edges)
+cv2.imwrite("/home/hus/Pictures/" + name + "_edge1.jpg", edges)
+cv2.imwrite("/home/hus/Pictures/" + name + "_cartoon1.jpg", cartoon)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
