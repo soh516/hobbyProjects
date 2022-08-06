@@ -10,12 +10,12 @@ class Window(QMainWindow):
         super().__init__()
   
         self.setGeometry(100, 100, 200, 80)
-        self.setWindowTitle('Cartoon')
+        self.setWindowTitle('Cartoonize Image')
   
         # creating a vertical layout
         layout = QVBoxLayout()
 
-        self.inputFileButton = QPushButton("Select file for processing", self)
+        self.inputFileButton = QPushButton("Select image for processing", self)
         self.inputFileButton.clicked.connect(self.inputFileDialog)
 
         self.algorithem1Group()
