@@ -22,7 +22,7 @@ class Window(QMainWindow):
         self.algorithem2Group()
 
         self.inputFileLabel = QLabel(self)
-        self.inputFileLabel.setAlignment(Qt.AlignCenter)
+        self.inputFileLabel.setAlignment(Qt.AlignLeft)
         
 
         layout.addWidget(self.inputFileButton)
@@ -71,7 +71,7 @@ class Window(QMainWindow):
         options |= QFileDialog.DontUseNativeDialog
         self.inputFileStr, check = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Image Files (*.jpg)", options=options)
         if check:
-            self.inputFileLabel.setText(self.inputFileStr)
+            self.inputFileLabel.setText("Input file: " + self.inputFileStr)
             #print(self.inputFileStr)
 
     def processImage1(self):
