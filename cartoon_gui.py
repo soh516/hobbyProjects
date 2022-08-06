@@ -23,6 +23,10 @@ class Window(QMainWindow):
 
         self.inputFileLabel = QLabel(self)
         self.inputFileLabel.setAlignment(Qt.AlignLeft)
+        self.inputFileLabel.setStyleSheet("QLabel"
+                                                                "{"
+                                                                "color : green;"
+                                                                "}")
         
 
         layout.addWidget(self.inputFileButton)
