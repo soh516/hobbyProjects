@@ -2,7 +2,7 @@ import sys
 from PySide6.QtGui import *
 from PySide6.QtCore import *  
 from PySide6.QtWidgets import *
-from processAlgorithm1 import *
+from processAlgorithm import *
   
 class Window(QMainWindow):
   
@@ -18,15 +18,28 @@ class Window(QMainWindow):
         self.inputFileButton = QPushButton("Select file for processing", self)
         self.inputFileButton.clicked.connect(self.inputFileDialog)
 
-        self.processButton = QPushButton("Process Image", self)
-        self.processButton.setStyleSheet("QPushButton"
+        self.processButton1 = QPushButton("Process Image With Algorithm 1",self)
+        self.processButton1.setStyleSheet("QPushButton"
                                                                 "{"
                                                                 "color : red;"
                                                                 "}")
-        self.processButton.clicked.connect(self.processImage)
+        self.processButton1.clicked.connect(self.processImage1)
+
+        self.processButton2 = QPushButton("Process Image With Algorithm 2",self)
+        self.processButton2.setStyleSheet("QPushButton"
+                                                                "{"
+                                                                "color : red;"
+                                                                "}")
+        self.processButton2.clicked.connect(self.processImage2)
+
+        self.inputFileLabel = QLabel(self)
+        self.inputFileLabel.setAlignment(Qt.AlignCenter)
+
 
         layout.addWidget(self.inputFileButton)
-        layout.addWidget(self.processButton)
+        layout.addWidget(self.inputFileLabel)
+        layout.addWidget(self.processButton1)
+        layout.addWidget(self.processButton2)
   
         self.widget = QWidget(self)
         self.widget.setLayout(layout)
@@ -37,12 +50,18 @@ class Window(QMainWindow):
     def inputFileDialog(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        self.inputFileStr, check = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Python Files (*.py)", options=options)
+        self.inputFileStr, check = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Image Files (*.jpg)", options=options)
         if check:
-            print(self.inputFileStr)
+            self.inputFileLabel.setText(self.inputFileStr)
+            #print(self.inputFileStr)
 
-    def processImage(self):
+    def processImage1(self):
         algorithm1(self.inputFileStr)
+
+    def processImage2(self):
+        algorithm2(self.inputFileStr)
+
+
 
 
 # create pyqt5 app
