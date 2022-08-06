@@ -18,34 +18,53 @@ class Window(QMainWindow):
         self.inputFileButton = QPushButton("Select file for processing", self)
         self.inputFileButton.clicked.connect(self.inputFileDialog)
 
+        self.algorithem1Group()
+        self.algorithem2Group()
+
+        self.inputFileLabel = QLabel(self)
+        self.inputFileLabel.setAlignment(Qt.AlignCenter)
+        
+
+        layout.addWidget(self.inputFileButton)
+        layout.addWidget(self.inputFileLabel)
+        layout.addLayout(self.algorithm1Layout)
+        layout.addLayout(self.algorithm2Layout)
+        
+        self.widget = QWidget(self)
+        self.widget.setLayout(layout)
+        self.setCentralWidget(self.widget)
+
+        self.show()
+
+    def algorithem1Group(self):
         self.processButton1 = QPushButton("Process Image With Algorithm 1",self)
         self.processButton1.setStyleSheet("QPushButton"
                                                                 "{"
                                                                 "color : red;"
                                                                 "}")
         self.processButton1.clicked.connect(self.processImage1)
+        self.saveButton1 = QPushButton("Save results", self)
 
+        self.algorithm1Layout = QHBoxLayout()
+        self.algorithm1Layout.addWidget(self.processButton1)
+        self.algorithm1Layout.addWidget(self.saveButton1)
+
+    def algorithem2Group(self):
         self.processButton2 = QPushButton("Process Image With Algorithm 2",self)
         self.processButton2.setStyleSheet("QPushButton"
                                                                 "{"
                                                                 "color : red;"
                                                                 "}")
         self.processButton2.clicked.connect(self.processImage2)
+        self.saveButton2 = QPushButton("Save results", self)
 
         self.inputFileLabel = QLabel(self)
         self.inputFileLabel.setAlignment(Qt.AlignCenter)
 
 
-        layout.addWidget(self.inputFileButton)
-        layout.addWidget(self.inputFileLabel)
-        layout.addWidget(self.processButton1)
-        layout.addWidget(self.processButton2)
-  
-        self.widget = QWidget(self)
-        self.widget.setLayout(layout)
-        self.setCentralWidget(self.widget)
-
-        self.show()
+        self.algorithm2Layout = QHBoxLayout()
+        self.algorithm2Layout.addWidget(self.processButton2)
+        self.algorithm2Layout.addWidget(self.saveButton2)
 
     def inputFileDialog(self):
         options = QFileDialog.Options()
