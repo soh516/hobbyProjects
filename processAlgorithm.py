@@ -26,8 +26,10 @@ def algorithm1(inputFile):
     cv2.imshow("Cartoon", cartoon)
     #cv2.imwrite("/home/hus/Pictures/" + name + "_edge1.jpg", edges)
     #cv2.imwrite("/home/hus/Pictures/" + name + "_cartoon1.jpg", cartoon)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    return edges, cartoon
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
+    
 
 def algorithm2(inputFile):
 
@@ -100,5 +102,6 @@ def algorithm2(inputFile):
     cv2.imshow("Cartoon", cartoon_Bilateral)
     #cv2.imwrite("/home/hus/Pictures/" + name + "_edge.jpg", inverted_Bilateral)
     #cv2.imwrite("/home/hus/Pictures/" + name + "_cartoon.jpg", cartoon_Bilateral)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    return inverted_Bilateral, cartoon_Bilateral
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
