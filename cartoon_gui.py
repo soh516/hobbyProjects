@@ -117,7 +117,8 @@ class Window(QMainWindow):
     def saveImage1(self):
         try:
             path, baseFileName = os.path.split(self.inputFileStr)
-            fileExtension = baseFileName.split(".")[1]
+            # -1 index will point at the last element of the list
+            fileExtension = baseFileName.split(".")[-1]
             baseFileNameOnly = baseFileName.split(".")[0]
             saveFileStr1 = path + "/" + baseFileNameOnly + "_algo1_edge." + fileExtension
             saveFileStr2 = path + "/" + baseFileNameOnly + "_algo1_cartoon." + fileExtension
@@ -135,7 +136,8 @@ class Window(QMainWindow):
     def saveImage2(self):
         try:
             path, baseFileName = os.path.split(self.inputFileStr)
-            fileExtension = baseFileName.split(".")[1]
+            # -1 index will point at the last element of the list
+            fileExtension = baseFileName.split(".")[-1]
             baseFileNameOnly = baseFileName.split(".")[0]
             saveFileStr1 = path + "/" + baseFileNameOnly + "_algo2_edge." + fileExtension
             saveFileStr2 = path + "/" + baseFileNameOnly + "_algo2_cartoon." + fileExtension
