@@ -19,7 +19,7 @@ y[:] = [tmp / 1000 for tmp in y]
 x = [dt.datetime.strptime(tmp, '%m/%d/%Y').date() for tmp in x_tmp]
 plt.plot(x, y, label='Historical')
 plt.xlabel('Date (Year)')
-plt.ylabel('Block usage (TB)')
+plt.ylabel('Block usage (PB)')
 plt.title('DataStore')
 plt.xticks(rotation=45)
 plt.grid(True)
