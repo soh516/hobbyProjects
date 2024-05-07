@@ -25,6 +25,8 @@ plt.xticks(rotation=45)
 plt.grid(True)
 ax = plt.gca()
 ax.grid(which='major', color='#DDDDDD', linestyle='dotted', linewidth=0.8)  # Major grid lines
+ax.grid(which='minor', color='#EEEEEE', linestyle='dotted', linewidth=0.8)  # Major grid lines
+ax.minorticks_on()
 
 date_range = list(range(1, len(y)+1))
 date_range_reshaped = np.array(date_range).reshape(-1, 1)
@@ -42,5 +44,10 @@ plt.vlines(x = vx, ymin = 0, ymax = max(y_predict), colors = 'purple', linestyle
 vy_xmin = dt.datetime.strptime('01/01/2029', '%m/%d/%Y').date()
 vy_xmax = dt.datetime.strptime('12/01/2030', '%m/%d/%Y').date()
 plt.hlines(xmin = vy_xmin, xmax= vy_xmax, y = 2.4, colors = 'purple', linestyle = 'dotted')
+plt.plot(vx, 1.7965, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
+vx1 = dt.datetime.strptime('04/14/2030', '%m/%d/%Y').date()
+plt.plot(vx1, 2.4, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
+plt.text(vx, 1.7, '(01/01/2027, 1.799)')
+plt.text(vx1, 2.3, '(04/14/2030, 2.4)')
 plt.legend()
 plt.show()
