@@ -35,26 +35,41 @@ ax.grid(which='major', color='#DDDDDD', linestyle='dotted', linewidth=0.8)  # Ma
 ax.grid(which='minor', color='#EEEEEE', linestyle='dotted', linewidth=0.5)  # Minor grid lines
 ax.minorticks_on()
 
+# Get the last day of the historical data
+last_his_date = x_tmp[-1]
+# Last day plus 1 --> first prediction date
+first_prediction_date = dt.datetime.strptime(last_his_date, '%m/%d/%Y').date() + dt.timedelta(days=1)
+
+# Model with historical data
 date_range = list(range(1, len(y)+1))
 date_range_reshaped = np.array(date_range).reshape(-1, 1)
 model = LinearRegression()
 model.fit(date_range_reshaped, y)
+
+# Predict future with historical data
 prediction_days = 2400
-future_dates = pd.date_range(start='2024-04-30', periods=prediction_days, freq='D')
+future_dates = pd.date_range(start=first_prediction_date, periods=prediction_days, freq='D')
 x_numeric = list(range(len(y)+1, len(y)+prediction_days+1))
 x_numeric_reshaped = np.array(x_numeric).reshape(-1, 1)
 y_predict = model.predict(x_numeric_reshaped)
+
+# Plot future data
 plt.plot(future_dates, y_predict, label='Predictions', color='r')
-#print(future_dates[1])
+
+# Points of interest
 vx = dt.datetime.strptime('01/01/2027', '%m/%d/%Y').date()
 plt.vlines(x = vx, ymin = 0, ymax = max(y_predict), colors = 'purple', linestyle = 'dotted')
+
 vy_xmin = dt.datetime.strptime('01/01/2029', '%m/%d/%Y').date()
 vy_xmax = dt.datetime.strptime('12/01/2030', '%m/%d/%Y').date()
 plt.hlines(xmin = vy_xmin, xmax= vy_xmax, y = 2.4, colors = 'purple', linestyle = 'dotted')
-plt.plot(vx, 1.7965, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
+
+plt.plot(vx, 1.7960, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
 vx1 = dt.datetime.strptime('04/14/2030', '%m/%d/%Y').date()
 plt.plot(vx1, 2.4, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
-plt.text(vx, 1.7, '(01/01/2027, 1.799)')
+plt.text(vx, 1.7, '(01/01/2027, 1.796)')
 plt.text(vx1, 2.3, '(04/14/2030, 2.4)')
+
+# Plot
 plt.legend()
 plt.show()
