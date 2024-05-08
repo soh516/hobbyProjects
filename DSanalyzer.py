@@ -56,19 +56,24 @@ y_predict = model.predict(x_numeric_reshaped)
 # Plot future data
 plt.plot(future_dates, y_predict, label='Predictions', color='r')
 
-# Points of interest with a specific date - 01/01/2027
+# Points of interest with a specific date 
 date_of_interest = '01/01/2027'
 future_dates_str = future_dates.strftime('%m/%d/%Y')
 index1 = 0
 while index1 < len(future_dates_str) and future_dates_str[index1] != date_of_interest:
         index1 = index1 + 1
-vx = dt.datetime.strptime('01/01/2027', '%m/%d/%Y').date()
+vx = dt.datetime.strptime(date_of_interest, '%m/%d/%Y').date()
 plt.text(vx, round(y_predict[index1], 1), '(' + date_of_interest + ', ' + str(round(y_predict[index1], 3)) +')')
 plt.plot(vx, y_predict[index1], marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
 
-vx1 = dt.datetime.strptime('04/14/2030', '%m/%d/%Y').date()
-plt.plot(vx1, 2.4, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
-plt.text(vx1, 2.3, '(04/14/2030, 2.4)')
+# Points of interest with a specific value
+vaule_of_interest = 2.4
+index2 = 0
+while index2 < len(y_predict) and abs(y_predict[index2] - vaule_of_interest) > 0.0005:
+        index2 = index2 + 1
+vx1 = dt.datetime.strptime(future_dates_str[index2], '%m/%d/%Y').date()
+plt.plot(vx1, vaule_of_interest, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
+plt.text(vx1, vaule_of_interest, '(' + future_dates_str[index2] + ', ' +  str(vaule_of_interest) + ')')
 
 # Plot
 plt.legend()
