@@ -25,7 +25,7 @@ x = [dt.datetime.strptime(tmp, '%m/%d/%Y').date() for tmp in x_tmp]
 
 # Plot historical data
 plt.plot(x, y, label='Historical')
-plt.xlabel('Date (Year)')
+plt.xlabel('Date')
 plt.ylabel('Block usage (PB)')
 plt.title('DataStore')
 plt.xticks(rotation=45)
@@ -57,17 +57,16 @@ y_predict = model.predict(x_numeric_reshaped)
 plt.plot(future_dates, y_predict, label='Predictions', color='r')
 
 # Points of interest
+future_dates_str = future_dates.strftime('%m/%d/%Y')
+index1 = 0
+while index1 < len(future_dates_str) and future_dates_str[index1] != '01/01/2027':
+        index1 = index1 + 1
 vx = dt.datetime.strptime('01/01/2027', '%m/%d/%Y').date()
-plt.vlines(x = vx, ymin = 0, ymax = max(y_predict), colors = 'purple', linestyle = 'dotted')
+plt.text(vx, round(y_predict[index1], 1), '(01/01/2027, '+ str(round(y_predict[index1], 3)) +')')
+plt.plot(vx, y_predict[index1], marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
 
-vy_xmin = dt.datetime.strptime('01/01/2029', '%m/%d/%Y').date()
-vy_xmax = dt.datetime.strptime('12/01/2030', '%m/%d/%Y').date()
-plt.hlines(xmin = vy_xmin, xmax= vy_xmax, y = 2.4, colors = 'purple', linestyle = 'dotted')
-
-plt.plot(vx, 1.7960, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
 vx1 = dt.datetime.strptime('04/14/2030', '%m/%d/%Y').date()
 plt.plot(vx1, 2.4, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
-plt.text(vx, 1.7, '(01/01/2027, 1.796)')
 plt.text(vx1, 2.3, '(04/14/2030, 2.4)')
 
 # Plot
