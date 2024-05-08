@@ -13,6 +13,7 @@ with open('DS3.csv', 'r') as csvfile:
     # Escape header
     header = next(csvread)
     for row in csvread:
+        # only read to list if it is NOT empty
         if row[0]:
             x_tmp.append(row[0])  # Assuming the x-values are in the first column
         if row[1]:
