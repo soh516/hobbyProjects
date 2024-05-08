@@ -8,16 +8,18 @@ import numpy as np
 x_tmp = []
 y_tmp = []
 
-with open('DS.csv', 'r') as csvfile:
-    plots = csv.reader(csvfile, delimiter=',')
-    for row in plots:
+with open('DS2.csv', 'r') as csvfile:
+    csvread = csv.reader(csvfile, delimiter=',')
+    # Escape header
+    header = next(csvread)
+    for row in csvread:
         x_tmp.append(row[0])  # Assuming the x-values are in the first column
         y_tmp.append(row[1])  # Assuming the y-values are in the second column
 
 # Convert a string list to float list
 y = list(map(float, y_tmp))
 
-# Convert TB to PB 
+# Convert TB to PB. This would reuse the list y. 
 y[:] = [tmp / 1000 for tmp in y]
 
 # Convert string to datetime object 
