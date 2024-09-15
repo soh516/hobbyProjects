@@ -46,9 +46,10 @@ ax = plt.gca()
 # Change date format via matpltlibs https://stackoverflow.com/questions/14946371/editing-the-date-formatting-of-x-axis-tick-labels
 myFmt = mdates.DateFormatter("%Y %b")
 ax.xaxis.set_major_formatter(myFmt)
-#ax.grid(which='major', color='#DDDDDD', linestyle='dotted', linewidth=0.8)  # Major grid lines
-#ax.grid(which='minor', color='#EEEEEE', linestyle='dotted', linewidth=0.5)  # Minor grid lines
+ax.grid(which='major', color='k', linestyle='dotted', linewidth=0.8)  # Major grid lines
+#ax.grid(which='minor', color='k', linestyle='dotted', linewidth=0.5)  # Minor grid lines
 #ax.minorticks_on()
+ax.set_ylim([0, 70])
 
 # Plot
 plt.legend()
