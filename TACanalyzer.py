@@ -35,9 +35,9 @@ x = [dt.datetime.strptime(tmp, '%Y-%m').date() for tmp in x_tmp]
 #    x[i] = x[i].strftime('%Y %b') 
 
 # Plot historical data
-plt.plot(x, y, label='Research TAC ticket', marker="o", markersize=5, linestyle='dotted', color='b')
-plt.plot(x, y2, label='General TAC ticket (Excluding research TAC)', marker="d", markersize=5, linestyle='dashed', color='r')
-plt.title('TAC ticket')
+plt.plot(x, y, label='Research TA ticket', marker="o", markersize=5, linestyle='dotted', color='b')
+plt.plot(x, y2, label='General TA ticket (Excluding research TA)', marker="d", markersize=5, linestyle='dashed', color='r')
+plt.title('Technology assessment')
 plt.xlabel('Date')
 plt.ylabel('Number of tickets')
 plt.xticks(rotation=45)
