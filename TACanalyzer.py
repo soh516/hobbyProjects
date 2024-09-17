@@ -30,22 +30,29 @@ y2 = list(map(float, y2_tmp))
 # Convert string to datetime object 
 x = [dt.datetime.strptime(tmp, '%Y-%m').date() for tmp in x_tmp]
 # I can convert datetime format via code or I could do it via matplotlibs
-#x = [tmp.strftime('%Y %b') for tmp in x]
+x = [tmp.strftime('%Y %b') for tmp in x]
 #for i in range(len(x)):
 #    x[i] = x[i].strftime('%Y %b') 
 
 # Plot historical data
-plt.plot(x, y, label='Research TA ticket', marker="o", markersize=5, linestyle='dotted', color='b')
-plt.plot(x, y2, label='General TA ticket (Excluding research TA)', marker="d", markersize=5, linestyle='dashed', color='r')
+#plt.plot(x, y, label='Research TA ticket', marker="o", markersize=5, linestyle='dotted', color='b')
+#plt.plot(x, y2, label='General TA ticket (Excluding research TA)', marker="d", markersize=5, linestyle='dashed', color='r')
+X_axis = np.arange(len(x))
+plt.bar(X_axis - 0.1, y, 0.2, label = 'Research TA ticket')
+plt.bar(X_axis + 0.1, y2, 0.2, label = 'General TA ticket (Excluding research TA)')
+plt.xticks(X_axis, x) 
 plt.title('Technology assessment')
 plt.xlabel('Date')
 plt.ylabel('Number of tickets')
 plt.xticks(rotation=45)
 plt.grid(True)
 ax = plt.gca()
+#ax.bar(x, y, width=10, label = 'Research TA ticket')
+#ax.bar(x, y2, width=8, label = 'Research TA ticket')
+#ax.xaxis_date()
 # Change date format via matpltlibs https://stackoverflow.com/questions/14946371/editing-the-date-formatting-of-x-axis-tick-labels
-myFmt = mdates.DateFormatter("%Y %b")
-ax.xaxis.set_major_formatter(myFmt)
+#myFmt = mdates.DateFormatter("%Y %b")
+#ax.xaxis.set_major_formatter(myFmt)
 ax.grid(which='major', color='k', linestyle='dotted', linewidth=0.8)  # Major grid lines
 #ax.grid(which='minor', color='k', linestyle='dotted', linewidth=0.5)  # Minor grid lines
 #ax.minorticks_on()
